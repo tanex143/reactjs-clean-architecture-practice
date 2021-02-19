@@ -9,14 +9,7 @@ import {
 
 const todoInitState = {
     loading: false,
-    todos: [
-        {
-            user_id: 0,
-            id: 0,
-            title: "",
-            completed: false,
-        },
-    ],
+    todos: [],
 }
 
 const todos = (state = todoInitState, action: any) => {
@@ -40,23 +33,23 @@ const todos = (state = todoInitState, action: any) => {
         case TODO_ADD:
             return {
                 ...state,
-                todos: [action.payload, ...state.todos],
+                todos: action.payload,
             }
-        case TODO_DELETE:
-            const tempTodo = state.todos.filter((f) => f.id !== action.payload)
-            return {
-                ...state,
-                todos: tempTodo,
-            }
-        case TODO_UPDATE:
-            const temp = [...state.todos]
-            const index = temp.findIndex((f) => f.id === action.payload.id)
-            const data = state.todos[index]
-            data.title = action.payload.title
-            return {
-                ...state,
-                todos: temp,
-            }
+        // case TODO_DELETE:
+        //     const tempTodo = state.todos.filter((f) => f.id !== action.payload)
+        //     return {
+        //         ...state,
+        //         todos: tempTodo,
+        //     }
+        // case TODO_UPDATE:
+        //     const temp = [...state.todos]
+        //     const index = temp.findIndex((f) => f.id === action.payload.id)
+        //     const data = state.todos[index]
+        //     data.title = action.payload.title
+        //     return {
+        //         ...state,
+        //         todos: temp,
+        //     }
         default:
             return state
     }

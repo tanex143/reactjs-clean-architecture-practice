@@ -15,4 +15,8 @@ export class TodoServiceImpl implements TodoService {
     async GetTodos(): Promise<Todo[]> {
         return this.todoRepo.GetTodos()
     }
+
+    AddTodos(data: Todo): Todo[] {
+        return this.todoRepo.AddTodo(data)
+    }
 }

@@ -25,10 +25,14 @@ export const displayList = async (dispatch: any) => {
     }
 }
 
-export const addTodo = (todo: Todo): TodoActionType => {
+export const addTodo = (data: any) => {
+    const addRepo = new TodoRepositoryImpl()
+    const addService = new TodoServiceImpl(addRepo)
+    const add = addService.todoRepo.AddTodo(data)
+
     return {
         type: TODO_ADD,
-        payload: todo,
+        payload: add,
     }
 }
 
