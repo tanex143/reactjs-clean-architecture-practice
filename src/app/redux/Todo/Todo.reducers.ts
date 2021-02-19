@@ -35,6 +35,11 @@ const todos = (state = todoInitState, action: any) => {
                 ...state,
                 todos: action.payload,
             }
+        case TODO_DELETE:
+            return {
+                ...state,
+                todos: action.payload,
+            }
         // case TODO_DELETE:
         //     const tempTodo = state.todos.filter((f) => f.id !== action.payload)
         //     return {

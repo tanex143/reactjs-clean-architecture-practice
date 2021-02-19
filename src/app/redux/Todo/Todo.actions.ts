@@ -28,11 +28,22 @@ export const displayList = async (dispatch: any) => {
 export const addTodo = (data: any) => {
     const addRepo = new TodoRepositoryImpl()
     const addService = new TodoServiceImpl(addRepo)
-    const add = addService.todoRepo.AddTodo(data)
+    const add = addService.todoRepo.AddTodos(data)
 
     return {
         type: TODO_ADD,
         payload: add,
+    }
+}
+
+export const deleteTodo = (id: number) => {
+    const delRepo = new TodoRepositoryImpl()
+    const delService = new TodoServiceImpl(delRepo)
+    const del = delService.todoRepo.DeleteTodos({ id: id })
+
+    return {
+        type: TODO_DELETE,
+        payload: del,
     }
 }
 
@@ -46,13 +57,13 @@ export const updateTodo = (id: number, title: string): TodoActionType => {
     }
 }
 
-export const deleteTodo = (id: number): TodoActionType => {
-    console.log(id)
-    return {
-        type: TODO_DELETE,
-        payload: id,
-    }
-}
+// export const deleteTodo = (id: number): TodoActionType => {
+//     console.log(id)
+//     return {
+//         type: TODO_DELETE,
+//         payload: id,
+//     }
+// }
 
 export const setCancelEdit = (id: number): TodoActionType => {
     return {

@@ -16,6 +16,7 @@ const TodoList: FC = () => {
     }, [dispatch])
 
     const deleteHandler = (id: number) => {
+        console.log(id)
         dispatch(deleteTodo(id))
     }
 

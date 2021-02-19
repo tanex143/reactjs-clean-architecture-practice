@@ -1,6 +1,7 @@
 import { Todo } from "../entities/Todo"
 
 export interface TodoRepository {
-    GetTodos(): Promise<Todo[]>
-    AddTodo(data: Todo): Todo[]
+    GetTodos(): Todo[]
+    AddTodos(data: Todo): Todo[]
+    DeleteTodos(data: any): Todo[]
 }

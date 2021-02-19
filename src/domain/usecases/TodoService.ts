@@ -2,7 +2,7 @@ import { Todo } from "../entities/Todo"
 import { TodoRepository } from "../repositories/TodoRepository"
 
 export interface TodoService {
-    GetTodos(): Promise<Todo[]>
+    GetTodos(): Todo[]
 }
 
 export class TodoServiceImpl implements TodoService {
@@ -12,11 +12,15 @@ export class TodoServiceImpl implements TodoService {
         this.todoRepo = tr
     }
 
-    async GetTodos(): Promise<Todo[]> {
+    GetTodos(): Todo[] {
         return this.todoRepo.GetTodos()
     }
 
     AddTodos(data: Todo): Todo[] {
-        return this.todoRepo.AddTodo(data)
+        return this.todoRepo.AddTodos(data)
+    }
+
+    DeleteTodos(data: Todo): Todo[] {
+        return this.todoRepo.DeleteTodos(data)
     }
 }
