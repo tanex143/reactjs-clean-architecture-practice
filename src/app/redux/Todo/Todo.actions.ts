@@ -5,9 +5,6 @@ import {
     TODO_ADD,
     TODO_UPDATE,
     TODO_DELETE,
-    Todo,
-    TodoActionType,
-    TODO_CANCEL,
 } from "./Todo.types"
 import { TodoRepositoryImpl } from "./../../../data/repositories/TodoRepositoryImpl"
 import { TodoServiceImpl } from "../../../domain/usecases/TodoService"
@@ -47,27 +44,13 @@ export const deleteTodo = (id: number) => {
     }
 }
 
-export const updateTodo = (id: number, title: string): TodoActionType => {
+export const UpdateTodo = (id: number, title: string) => {
+    const editRepo = new TodoRepositoryImpl()
+    const editService = new TodoServiceImpl(editRepo)
+    const edit = editService.todoRepo.UpdateTodos({ id: id, title: title })
+
     return {
         type: TODO_UPDATE,
-        payload: {
-            id,
-            title,
-        },
-    }
-}
-
-// export const deleteTodo = (id: number): TodoActionType => {
-//     console.log(id)
-//     return {
-//         type: TODO_DELETE,
-//         payload: id,
-//     }
-// }
-
-export const setCancelEdit = (id: number): TodoActionType => {
-    return {
-        type: TODO_CANCEL,
-        payload: id,
+        payload: edit,
     }
 }

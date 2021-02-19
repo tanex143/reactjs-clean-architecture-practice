@@ -23,4 +23,8 @@ export class TodoServiceImpl implements TodoService {
     DeleteTodos(data: Todo): Todo[] {
         return this.todoRepo.DeleteTodos(data)
     }
+
+    UpdateTodos(data: Todo): Todo[] {
+        return this.todoRepo.UpdateTodos(data)
+    }
 }

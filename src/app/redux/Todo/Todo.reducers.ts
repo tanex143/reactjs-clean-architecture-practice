@@ -40,21 +40,11 @@ const todos = (state = todoInitState, action: any) => {
                 ...state,
                 todos: action.payload,
             }
-        // case TODO_DELETE:
-        //     const tempTodo = state.todos.filter((f) => f.id !== action.payload)
-        //     return {
-        //         ...state,
-        //         todos: tempTodo,
-        //     }
-        // case TODO_UPDATE:
-        //     const temp = [...state.todos]
-        //     const index = temp.findIndex((f) => f.id === action.payload.id)
-        //     const data = state.todos[index]
-        //     data.title = action.payload.title
-        //     return {
-        //         ...state,
-        //         todos: temp,
-        //     }
+        case TODO_UPDATE:
+            return {
+                ...state,
+                todos: action.payload,
+            }
         default:
             return state
     }

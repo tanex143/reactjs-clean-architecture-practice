@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react"
 import { useDispatch, useSelector, connect } from "react-redux"
 import { RootState } from "../../../App"
 import { Todo } from "./../../redux/Todo/Todo.types"
-import { displayList, updateTodo, deleteTodo, setCancelEdit } from "../../redux/Todo/Todo.actions"
+import { displayList, UpdateTodo, deleteTodo } from "../../redux/Todo/Todo.actions"
 import InputForm from "./InputForm"
 
 const TodoList: FC = () => {
@@ -27,13 +27,7 @@ const TodoList: FC = () => {
             return alert("Cannot proceed with blank todo. . .")
         }
 
-        dispatch(updateTodo(id, editInput))
-    }
-
-    const editCancelHandler = (e: any) => {
-        e.preventDefault()
-
-        dispatch(setCancelEdit)
+        dispatch(UpdateTodo(id, editInput))
     }
 
     const passingDataClicked = (e: any, id: number, title: string) => {
@@ -103,12 +97,7 @@ const TodoList: FC = () => {
                                             >
                                                 Save
                                             </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-danger"
-                                                data-bs-dismiss="modal"
-                                                onClick={editCancelHandler}
-                                            >
+                                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">
                                                 Cancel
                                             </button>
                                         </div>

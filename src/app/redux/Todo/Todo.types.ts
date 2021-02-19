@@ -23,27 +23,4 @@ export interface Todo {
     completed: boolean
 }
 
-interface AddAction {
-    type: typeof TODO_ADD
-    payload: Todo
-}
-
-interface UpdateAction {
-    type: typeof TODO_UPDATE
-    payload: {
-        id: number
-        title: string
-    }
-}
-
-interface DeleteAction {
-    type: typeof TODO_DELETE
-    payload: number
-}
-
-interface CancalEditAction {
-    type: typeof TODO_CANCEL
-    payload: number
-}
-
-export type TodoActionType = ShowTodoList | AddAction | UpdateAction | DeleteAction | CancalEditAction
+export type TodoActionType = ShowTodoList

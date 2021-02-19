@@ -27,4 +27,11 @@ export class TodoRepositoryImpl implements TodoRepository {
 
         return todoList.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
     }
+
+    UpdateTodos(data: Todo): Todo[] {
+        const index = todoList.findIndex((f) => f.id === data.id)
+        todoList[index].title = data.title
+
+        return todoList.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
+    }
 }

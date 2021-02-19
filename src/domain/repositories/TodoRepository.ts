@@ -4,4 +4,5 @@ export interface TodoRepository {
     GetTodos(): Todo[]
     AddTodos(data: Todo): Todo[]
     DeleteTodos(data: any): Todo[]
+    UpdateTodos(data: any): Todo[]
 }
