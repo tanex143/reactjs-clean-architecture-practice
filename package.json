@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
     "react": "^17.0.1",

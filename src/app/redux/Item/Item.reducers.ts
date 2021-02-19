@@ -1,4 +1,3 @@
-import { Item } from "../../../domain/entities/Item"
 import { LIST_LOAD_REQUEST, LIST_LOAD_SUCCESS, LIST_LOAD_FAILURE, RefreshItemListSuccess } from "./Item.types"
 
 const initialState = {
@@ -32,4 +31,5 @@ function items(state = initialState, action: { type: string; payload: RefreshIte
             return state
     }
 }
+
 export default items

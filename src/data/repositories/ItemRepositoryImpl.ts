@@ -13,6 +13,7 @@ export class ItemRepositoryImpl implements ItemRepository {
     async GetItems(): Promise<Item[]> {
         const res = await fetch(this.jsonUrl)
         const jsonData = await res.json()
+
         return jsonData.map((item: ItemDTO) => new Item(item.id, item.name))
     }
 }
