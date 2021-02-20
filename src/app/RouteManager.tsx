@@ -7,9 +7,9 @@ const RouteManager = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/" exact component={ItemList} />
+                {/* <Route path="/" exact component={ItemList} /> */}
                 <Route path="/todo" exact component={TodoList} />
-                <Redirect from="*" to="/" />
+                <Redirect from="*" to="/todo" />
             </Switch>
         </Router>
     )

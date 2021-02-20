@@ -7,20 +7,20 @@ export const TODO_DELETE = "TODO_DELETE"
 export const TODO_CANCEL = "TODO_CANCEL"
 
 export type TodoProps = {
-    todos: Todo[]
-    dislayList: () => Todo[]
+  todos: Todo[]
+  dislayList: () => Todo[]
 }
 
 export interface ShowTodoList {
-    type: typeof TODO_LOAD_SUCCESS
-    payload: Todo[]
+  type: typeof TODO_LOAD_SUCCESS
+  payload: Todo[]
 }
 
 export interface Todo {
-    userId: number
-    id: number
-    title: string
-    completed: boolean
+  userId: number
+  id: number
+  title: string
+  completed: boolean
 }
 
 export type TodoActionType = ShowTodoList

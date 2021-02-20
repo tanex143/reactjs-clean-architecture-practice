@@ -2,29 +2,29 @@ import { Todo } from "../entities/Todo"
 import { TodoRepository } from "../repositories/TodoRepository"
 
 export interface TodoService {
-    GetTodos(): Todo[]
+  GetTodos(): Todo[]
 }
 
 export class TodoServiceImpl implements TodoService {
-    todoRepo: TodoRepository
+  todoRepo: TodoRepository
 
-    constructor(tr: TodoRepository) {
-        this.todoRepo = tr
-    }
+  constructor(tr: TodoRepository) {
+    this.todoRepo = tr
+  }
 
-    GetTodos(): Todo[] {
-        return this.todoRepo.GetTodos()
-    }
+  GetTodos(): Todo[] {
+    return this.todoRepo.GetTodos()
+  }
 
-    AddTodos(data: Todo): Todo[] {
-        return this.todoRepo.AddTodos(data)
-    }
+  AddTodos(data: Todo): Todo[] {
+    return this.todoRepo.AddTodos(data)
+  }
 
-    DeleteTodos(data: Todo): Todo[] {
-        return this.todoRepo.DeleteTodos(data)
-    }
+  DeleteTodos(data: Todo): Todo[] {
+    return this.todoRepo.DeleteTodos(data)
+  }
 
-    UpdateTodos(data: Todo): Todo[] {
-        return this.todoRepo.UpdateTodos(data)
-    }
+  UpdateTodos(data: Todo): Todo[] {
+    return this.todoRepo.UpdateTodos(data)
+  }
 }
