@@ -41,10 +41,6 @@ const TodoList: FC = () => {
     setModalCtrl(true)
   }
 
-  //const completedHandler = (id: number) => {
-  //  dispatch(CompletedTodo(id))
-  //}
-
   return (
     <>
       <div className="container mx-auto overflow-x-hidden">

@@ -17,9 +17,9 @@ export interface ShowTodoList {
 }
 
 export interface Todo {
-  userId: number
   id: number
   title: string
+  age: number
   completed: boolean
 }
 

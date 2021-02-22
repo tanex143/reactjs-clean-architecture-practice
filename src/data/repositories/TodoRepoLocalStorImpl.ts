@@ -3,9 +3,9 @@ import { TodoRepository } from "../../domain/repositories/TodoRepository"
 import { reactLocalStorage } from "reactjs-localstorage"
 
 class TodoDTO {
-  userId = 0
   id = 0
   title = ""
+  age = 0
   completed = false
 }
 
@@ -15,7 +15,7 @@ export class TodoRepoLocalStorImpl implements TodoRepository {
     const localData = JSON.parse(getLocalData)
     console.log("Local Storage:", localData)
 
-    return localData.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
+    return localData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 
   AddTodos(data: Todo): Todo[] {
@@ -24,7 +24,7 @@ export class TodoRepoLocalStorImpl implements TodoRepository {
     JSONUnbox.push(data)
     reactLocalStorage.set("todoList", JSON.stringify(JSONUnbox))
 
-    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
+    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 
   DeleteTodos(data: Todo): Todo[] {
@@ -34,7 +34,7 @@ export class TodoRepoLocalStorImpl implements TodoRepository {
     JSONUnbox.splice(index, 1)
     reactLocalStorage.set("todoList", JSON.stringify(JSONUnbox))
 
-    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
+    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 
   UpdateTodos(data: Todo): Todo[] {
@@ -44,6 +44,6 @@ export class TodoRepoLocalStorImpl implements TodoRepository {
     JSONUnbox[index].title = data.title
     reactLocalStorage.set("todoList", JSON.stringify(JSONUnbox))
 
-    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.userId, todo.id, todo.title, todo.completed))
+    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 }
