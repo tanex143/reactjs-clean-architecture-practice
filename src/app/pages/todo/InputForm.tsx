@@ -15,7 +15,7 @@ const InputForm: FC = () => {
       return alert("Blank is not valid")
     }
 
-    const newTitle = {
+    const newTitle: any = {
       id: Date.now(),
       title: inputTitle,
       age: inputAge,

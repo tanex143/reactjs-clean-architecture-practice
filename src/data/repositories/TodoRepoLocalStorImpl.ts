@@ -13,7 +13,6 @@ export class TodoRepoLocalStorImpl implements TodoRepository {
   GetTodos(): Todo[] {
     const getLocalData = reactLocalStorage.get("todoList", "[]")
     const localData = JSON.parse(getLocalData)
-    console.log("Local Storage:", localData)
 
     return localData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
