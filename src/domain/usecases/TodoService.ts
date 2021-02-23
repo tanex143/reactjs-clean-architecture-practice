@@ -27,7 +27,7 @@ export class TodoServiceImpl implements TodoService {
     return this.todoRepo.AddTodos(data)
   }
 
-  DeleteTodos(data: any) {
+  async DeleteTodos(data: any): Promise<any> {
     return this.todoRepo.DeleteTodos(data)
   }
 
