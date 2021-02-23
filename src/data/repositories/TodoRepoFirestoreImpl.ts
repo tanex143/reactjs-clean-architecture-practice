@@ -29,23 +29,20 @@ export class TodoRepoFirestoreImpl implements TodoRepository {
       completed: data.completed,
     })
 
-    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => doc.data())
-    return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
+    return this.GetTodos()
   }
 
   async DeleteTodos(data: Todo): Promise<any> {
     const JSONString = JSON.stringify(data.id)
     await db.collection("todoList").doc(JSONString).delete()
 
-    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => doc.data())
-    return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
+    return this.GetTodos()
   }
 
   async UpdateTodos(data: Todo): Promise<any> {
     const JSONString = JSON.stringify(data.id)
     await db.collection("todoList").doc(JSONString).update({ title: data.title })
 
-    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => doc.data())
-    return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
+    return this.GetTodos()
   }
 }
