@@ -40,13 +40,10 @@ export const deleteTodo = (id: number) => async (dispatch: Dispatch) => {
   dispatch({ type: TODO_DELETE, payload: del })
 }
 
-export const UpdateTodo = (id: number, title: string) => {
+export const UpdateTodo = (id: number, title: string) => async (dispatch: Dispatch) => {
   const editRepo = new TodoRepoFirestoreImpl()
   const editService = new TodoServiceImpl(editRepo)
-  const edit = editService.UpdateTodos({ id: id, title: title })
+  const edit = await editService.UpdateTodos({ id: id, title: title })
 
-  return {
-    type: TODO_UPDATE,
-    payload: edit,
-  }
+  dispatch({ type: TODO_UPDATE, payload: edit })
 }

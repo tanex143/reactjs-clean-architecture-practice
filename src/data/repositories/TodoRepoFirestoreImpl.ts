@@ -41,13 +41,11 @@ export class TodoRepoFirestoreImpl implements TodoRepository {
     return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 
-  UpdateTodos(data: Todo): Todo[] {
-    const getLocalData = reactLocalStorage.get("todoList", "[]")
-    const JSONUnbox = JSON.parse(getLocalData)
-    const index = JSONUnbox.findIndex((f: any) => f.id === data.id)
-    JSONUnbox[index].title = data.title
-    reactLocalStorage.set("todoList", JSON.stringify(JSONUnbox))
+  async UpdateTodos(data: Todo): Promise<any> {
+    const JSONString = JSON.stringify(data.id)
+    await db.collection("todoList").doc(JSONString).update({ title: data.title })
 
-    return JSONUnbox.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
+    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => doc.data())
+    return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
   }
 }
