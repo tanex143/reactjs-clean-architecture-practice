@@ -14,10 +14,7 @@ const todoListLocal: Todo[] = []
 
 export class TodoRepoFirestoreImpl implements TodoRepository {
   async GetTodos(): Promise<Todo[]> {
-    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => ({
-      ...doc.data(),
-      id: doc.id,
-    }))
+    const FirestoreData = (await db.collection("todoList").get()).docs.map((doc: any) => doc.data())
     console.log("from firestore list", FirestoreData)
 
     return FirestoreData.map((todo: TodoDTO) => new Todo(todo.id, todo.title, todo.age, todo.completed))
