@@ -7,13 +7,14 @@ import {
   TODO_DELETE,
 } from "./Todo.types"
 import { TodoServiceImpl } from "../../../domain/usecases/TodoService"
-import { TodoRepoLocalStorImpl } from "./../../../data/repositories/TodoRepoLocalStorImpl"
+import { TodoRepoFirestoreImpl } from "./../../../data/repositories/TodoRepoFirestoreImpl"
+import { useDispatch } from "react-redux"
 
 export const displayList = async (dispatch: any) => {
   dispatch({ type: TODO_LOAD_REQUEST })
 
   try {
-    const todoRepo = new TodoRepoLocalStorImpl()
+    const todoRepo = new TodoRepoFirestoreImpl()
     const todoService = new TodoServiceImpl(todoRepo)
     const todos = await todoService.GetTodos()
     dispatch({ type: TODO_LOAD_SUCCESS, payload: todos })
@@ -22,10 +23,11 @@ export const displayList = async (dispatch: any) => {
   }
 }
 
-export const addTodo = (data: any) => {
-  const addRepo = new TodoRepoLocalStorImpl()
+export const addTodo = async (data: any) => {
+  const addRepo = new TodoRepoFirestoreImpl()
   const addService = new TodoServiceImpl(addRepo)
-  const add = addService.AddTodos(data)
+  const add = await addService.AddTodos(data)
+  console.log("from actions", add)
 
   return {
     type: TODO_ADD,
@@ -34,7 +36,7 @@ export const addTodo = (data: any) => {
 }
 
 export const deleteTodo = (id: number) => {
-  const delRepo = new TodoRepoLocalStorImpl()
+  const delRepo = new TodoRepoFirestoreImpl()
   const delService = new TodoServiceImpl(delRepo)
   const del = delService.DeleteTodos({ id: id })
 
@@ -45,7 +47,7 @@ export const deleteTodo = (id: number) => {
 }
 
 export const UpdateTodo = (id: number, title: string) => {
-  const editRepo = new TodoRepoLocalStorImpl()
+  const editRepo = new TodoRepoFirestoreImpl()
   const editService = new TodoServiceImpl(editRepo)
   const edit = editService.UpdateTodos({ id: id, title: title })
 

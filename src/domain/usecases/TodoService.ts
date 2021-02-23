@@ -3,7 +3,7 @@ import { TodoRepository } from "../repositories/TodoRepository"
 import { reactLocalStorage } from "reactjs-localstorage"
 
 export interface TodoService {
-  GetTodos(): Todo[]
+  GetTodos(): Promise<Todo[]>
 }
 
 export class TodoServiceImpl implements TodoService {
@@ -13,18 +13,15 @@ export class TodoServiceImpl implements TodoService {
     this.todoRepo = tr
   }
 
-  GetTodos(): Todo[] {
+  async GetTodos(): Promise<Todo[]> {
     return this.todoRepo.GetTodos()
   }
 
-  AddTodos(data: any) {
+  async AddTodos(data: any): Promise<any> {
     const age = data.age
 
     if (age < 18) {
-      const getLocalData = reactLocalStorage.get("todoList", "[]")
-      const JSONUnbox = JSON.parse(getLocalData)
-      alert("Your age is below 18. Please grow more.")
-      return JSONUnbox
+      throw alert("age is below 18")
     }
 
     return this.todoRepo.AddTodos(data)
